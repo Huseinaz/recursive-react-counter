@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.parent {
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+ul {
+    list-style-type: "- ";
+}
+
+button {
+    padding: 5px;
+}
