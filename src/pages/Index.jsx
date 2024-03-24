@@ -1,17 +1,40 @@
-// import { useState } from "react";
-import "./Index.css";
-import Counter from "./Counter";
+import React, { useState } from "react";
+import './Index.css'
 
-const Index = () => {
-  // const [count, setCount] = useState(1);
+const Counter = ({ cardsList = { count: 1, children: [] }, onAddChild }) => {
+  const [count, setCount] = useState(cardsList.count);
+  const [children, setChildren] = useState(cardsList.children || []);
 
+  const increment = () => {
+    const newChild = { count: count + 1, children: [] };
+    setCount(count + 1);
+    setChildren([...children, newChild]); 
+    if (onAddChild) {
+      onAddChild(newChild);
+    }
+  };
+
+  const decrement = () => {
+    setChildren(children.filter((child) => child.count!== count));
+  };
+  
   return (
-    <div className="parent">
-      <ul>
-        <Counter />
-      </ul>
+    <div>
+    <span>- {count}</span>
+      <button onClick={increment}>+</button>
+      
+      <button onClick={decrement}>-</button>
+      {count > 1 && (
+        <ul>
+          {children.map((child) => (
+            <li key={child.count}>
+              <Counter cardsList={child} onAddChild={onAddChild} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
-  )
+  );
 }
 
-export default Index
+export default Counter;

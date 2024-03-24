@@ -1,9 +1,9 @@
-import Index from "./pages/Index";
+import Counter from "./pages/Index";
 
 function App() {
   return (
     <div className="App">
-      <Index />
+      <Counter />
     </div>
   );
 }
